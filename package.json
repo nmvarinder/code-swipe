@@ -1,0 +1,19 @@
+{
+  "name": "devtinder",
+  "version": "1.0.0",
+  "description": "network of developers",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev" : "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mern"
+  ],
+  "author": "varinder",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
