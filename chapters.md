@@ -39,3 +39,12 @@ Chapter: 18: MIDDLEWARE AND ERROR HANDLERS
  - write a dummy auth middleware for all user except user/login 
 
  - error handling using app.use('/', (err, req, res, next) = {})
+
+
+
+Chapter: 19: DATABASE, SCHEMA AND MODELS MONGOOSE
+- create a cluster on mongoDB official website
+- install mongoose lib
+- connect your application to the db  -devTinder
+- call the connectDB function and connect before listing to the port(very imp).
+
