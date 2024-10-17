@@ -50,3 +50,7 @@ Chapter: 19: DATABASE, SCHEMA AND MODELS MONGOOSE
 
 - create a userSchema and user model
 
+- create POST /signup API to add data to database(collection)
+- push some document using api calls from postman
+- use try and catch while saving data into tha db collection -> always do error handling 
+
