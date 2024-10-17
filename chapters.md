@@ -37,3 +37,5 @@ Chapter: 18: MIDDLEWARE AND ERROR HANDLERS
  - how express js basically handles requests behind the scene
  - write a dummy auth middleware for admin
  - write a dummy auth middleware for all user except user/login 
+
+ - error handling using app.use('/', (err, req, res, next) = {})

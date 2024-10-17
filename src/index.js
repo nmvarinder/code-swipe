@@ -1,22 +1,23 @@
 const express = require('express');
-const {authAdmin, authUser} = require("../middleware/authorization")
-
 const app = express();
 
-//good way of managing middleware
-app.use("/admin", authAdmin)
-
-app.get("/admin/getAllData", (req, res, next) => {
-    res.send("get All Data");
+// app.get here alone expose code to the browser
+app.get('/users/getInfo', (req, res) => {
+    console.log("managing error handling")
+    throw new Error("custom error");
+    res.send("use data sent");
 })
 
-app.get("/admin/deleteAllData", (req, res, next) => {
-    res.send("delete All Data");
+// from avoid exposing to the browser we use another error handler middleware router handler or also we can use try and catch in above route handlers
+// best error handling is try and catch
+
+app.use('/', (err, req, res, next) => {
+    if(err){
+        console.log(err);
+        res.status(500).send("something went wrong");
+    }
 })
 
-app.get("/user", authUser, (req, res, next) => {
-    res.send("user here");
-})
 
 app.listen(3000, () => {
     console.log("server is successfully listening of port number: 3000");
