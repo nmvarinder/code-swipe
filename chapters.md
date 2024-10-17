@@ -48,3 +48,5 @@ Chapter: 19: DATABASE, SCHEMA AND MODELS MONGOOSE
 - connect your application to the db  -devTinder
 - call the connectDB function and connect before listing to the port(very imp).
 
+- create a userSchema and user model
+
