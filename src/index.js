@@ -3,18 +3,14 @@ const connectDB = require('./config/database')
 const User = require('./models/user');
 const app = express();
 
+app.use(express.json());
+
 app.post('/signup', async (req, res) => {
     console.log("adding data to devTinder DB");
 
-    const user = new User({
-        firstName: 'kishore', 
-        lastName: 'kumar',
-        gender: 'male',
-        experience: 3,
-        emailId: 'kishore@kumar.com',
-        password: 'kishor@123s',
-        
-    })
+    // console.log(req.body);
+
+    const user = new User(req.body)
 
     try{
         await user.save();

@@ -54,3 +54,9 @@ Chapter: 19: DATABASE, SCHEMA AND MODELS MONGOOSE
 - push some document using api calls from postman
 - use try and catch while saving data into tha db collection -> always do error handling 
 
+
+
+CHAPTER 20: DIVING INTO THE API
+- js object vs json 
+- add the express.json middleware 
+- make signup api dynamic to receive data from the end user
