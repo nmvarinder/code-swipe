@@ -12,7 +12,7 @@ Chapter: 16: CREATING OUR EXPRESS SERVER
 -what is the use of -g while npm install
 
 
-Chapter: 16: ROUTING AND REQUEST HANDLER
+Chapter: 17: ROUTING AND REQUEST HANDLER
 -play with different router
 -try to implement /hello and /hello/2 and find some key points
 -order of router is very important and matter alots = specially in use method
@@ -23,3 +23,12 @@ Chapter: 16: ROUTING AND REQUEST HANDLER
 - use of *, +, ?, () 
 - regex in route path
 - reading the dynamic routes
+
+
+Chapter: 18: MIDDLEWARE AND ERROR HANDLERS
+- multiple route handlers
+- next()
+- next function and error along with res.send()
+- app.use("/route", rh1, rh2, rh3, rh4, ...)
+- router handler: array
+ eg. app.use("/route", [rh1, rh2], rh3, rh4, ...) -=- this is same as aboves
