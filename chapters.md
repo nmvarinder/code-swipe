@@ -60,3 +60,7 @@ CHAPTER 20: DIVING INTO THE API
 - js object vs json 
 - add the express.json middleware 
 - make signup api dynamic to receive data from the end user
+
+- findOne -> which document send if there is a duplicate documents present in the same collection
+- API - get user by email
+- API - feed api -> get /feed - get all the user from the collection users
