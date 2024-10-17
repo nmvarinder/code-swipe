@@ -17,7 +17,9 @@ Chapter: 16: ROUTING AND REQUEST HANDLER
 -try to implement /hello and /hello/2 and find some key points
 -order of router is very important and matter alots = specially in use method
 -install postman and make a get hello router request
-
+-http method: get, post, delete, put, patch, use etc.
 -must explore->  https://expressjs.com/en/guide/routing.html
-
 - diff bt req.params vs req.query
+- use of *, +, ?, () 
+- regex in route path
+- reading the dynamic routes

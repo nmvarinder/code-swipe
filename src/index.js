@@ -9,9 +9,7 @@ app.use('/users', (req,res) => {
     res.send("jadu jo glt hai");
 }) */
 
-app.get('/', (req,res) => {
-    res.send("testing")
-})
+
 
 app.get('/users', (req,res) => {
     res.send("testing ordering in get method");
@@ -31,6 +29,11 @@ app.post('/users', (req,res) => {
 
 app.delete('/users', (req,res) => {
     res.send("data deleted")
+})
+
+app.use('/', (req,res) => {
+    console.log(req);
+    res.send("testing");
 })
 
 
