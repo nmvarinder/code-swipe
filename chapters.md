@@ -64,3 +64,7 @@ CHAPTER 20: DIVING INTO THE API
 - findOne -> which document send if there is a duplicate documents present in the same collection
 - API - get user by email
 - API - feed api -> get /feed - get all the user from the collection users
+
+- create a delete user API
+- create delete api
+- diff bt patch vs put
