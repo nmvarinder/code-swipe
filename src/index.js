@@ -12,6 +12,7 @@ app.use('/users', (req,res) => {
 
 
 app.get('/users', (req,res) => {
+    console.log(req.query);
     res.send("testing ordering in get method");
 })
 
