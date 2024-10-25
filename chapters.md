@@ -77,3 +77,6 @@ CHAPTER: 21: DATA SANITIZATION AND SCHEMA VALIDATIONS
  - create a custom validation function for input
  - improve db schema - put all approriate validation on each field in schema
  - add timestamps to the userSchema 
+
+ - add api level validation on patch request & signup post api
+ - add api validation for each field
