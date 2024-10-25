@@ -2,15 +2,31 @@ const express = require('express');
 const connectDB = require('./config/database')
 const User = require('./models/user');
 const app = express();
-
+const {validateSignupData} = require('./utils/validation');
+const bcrypt = require('bcrypt');
 app.use(express.json());
 
 /* POST API */
 app.post('/signup', async (req, res) => {
-    console.log("adding data to devTinder DB");
-    // console.log(req.body);
-    const user = new User(req.body)
     try{
+        //validating
+        validateSignupData(req);
+
+        //getting field
+        const {firstName, lastName, emailId, password} = req.body;
+
+        // encrypting password
+        const passwordHash = await bcrypt.hash(password, 10);
+
+        // ready field of api after checking validation for storing in db
+        const user = new User({
+            firstName, 
+            lastName, 
+            emailId,
+            password: passwordHash,
+        })
+        
+        // ready and save into db
         await user.save();
         res.send("User added successfully");
     } catch(err){

@@ -84,3 +84,9 @@ CHAPTER: 21: DATA SANITIZATION AND SCHEMA VALIDATIONS
  - install validator library
  - explore validator library npm
  - (imp)never in your trust req body
+
+
+ CHAPTER 22: encrypting password
+ - validate data in signup api  
+ - install bcrypt package lib
+ - create password using bcrypt.hash & save the user as encrypted password into the db
