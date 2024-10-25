@@ -90,3 +90,6 @@ CHAPTER: 21: DATA SANITIZATION AND SCHEMA VALIDATIONS
  - validate data in signup api  
  - install bcrypt package lib
  - create password using bcrypt.hash & save the user as encrypted password into the db
+
+ - create login api
+ - compare password and throw error if email or password is invalid
