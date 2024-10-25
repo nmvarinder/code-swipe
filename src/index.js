@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt');
 app.use(express.json());
 
 /* POST API */
+//signup
 app.post('/signup', async (req, res) => {
     try{
         //validating
@@ -33,6 +34,42 @@ app.post('/signup', async (req, res) => {
         res.status(400).send('Error saving the user: ' + err.message);
     }
 })
+
+
+//login
+app.post('/login', async (req, res) => {
+    try{
+        const {emailId, password} = req.body;
+
+        //checking user email id present in db or not
+        const userData = await User.findOne({emailId});
+        
+        if(!userData){
+            throw new Error("user Doesn't exist");
+        }
+        //comparing password with stored hash password
+        const match = await bcrypt.compare(password, userData.password);
+
+        //data send: user login
+        if(!match){
+            throw new Error("Oops!...password incorrect")
+        } else {
+            res.send("user login successfully!!!")
+        }
+    } catch(err) {
+        res.status(404).send(err.message);
+    }
+
+
+})
+
+
+
+
+
+
+
+
 
 /* GET API */
 // get single user
