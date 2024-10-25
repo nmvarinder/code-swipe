@@ -68,3 +68,12 @@ CHAPTER 20: DIVING INTO THE API
 - create a delete user API
 - create delete api
 - diff bt patch vs put
+
+
+CHAPTER: 21: DATA SANITIZATION AND SCHEMA VALIDATIONS
+ - explore schematypes options from documentation
+ - add require, unique, lowercase, min, minLength, trim
+ - add default
+ - create a custom validation function for input
+ - improve db schema - put all approriate validation on each field in schema
+ - add timestamps to the userSchema 

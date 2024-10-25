@@ -20,7 +20,7 @@ app.post('/signup', async (req, res) => {
 
 /* GET API */
 // get single user
-app.get('/users', async (req, res) => {
+app.get('/user', async (req, res) => {
     console.log(req.body.emailId);
     const userEmail = req.body.emailId;
     const user = await User.findOne({emailId: userEmail});
@@ -65,11 +65,12 @@ app.delete('/user', async (req, res) => {
 app.patch('/user', async (req, res) => {
     const userId = req.body.userId;
     const data = req.body;
+    data.isNew;
     try{
-        await User.findByIdAndUpdate({_id: userId}, data);
+        await User.findByIdAndUpdate({_id: userId}, data, {runValidators:true});
         res.send("user updated successfully");
     } catch(err) {
-        res.status(404).send("something went wrong!");
+        res.status(404).send("something went wrong!" + err);
     }
 })
 // using put

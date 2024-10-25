@@ -2,23 +2,51 @@ const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
     firstName: {
-        type: String
+        type: String,
+        required: true,
+        minLength: 4,
+        trim: true,
     }, 
     lastName: {
-        type: String
+        type: String, 
+        maxLength: 25,
+        trim: true,
     },
     gender : {
-        type: String
+        type: String,
+        lowercase: true,
+        trim: true,
+        validate(value){
+            if(!["male", "female", "other"].includes(value)){
+                throw new Error("Oops!...wrong input");
+            }
+        },
     },
     experience: {
-        type: Number
+        type: Number,
+        min: 0,
     },
     emailId: {
-        type: String
+        type: String, 
+        required: true,
+        maxLength: 255,
+        lowercase: true,
+        trim: true,
+        unique: true,
+        immutable: true,
     },
     password: {
-        type: String
+        type: String, 
+        required: true,
+    }, 
+    about: {
+        type: String,
+        default: "Let'us know about yourself.",
+    }, 
+    skills: {
+        type: [String],
+
     }
-});
+}, { timestamps: true});
 
 module.exports = mongoose.model('User', userSchema);
