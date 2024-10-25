@@ -80,3 +80,7 @@ CHAPTER: 21: DATA SANITIZATION AND SCHEMA VALIDATIONS
 
  - add api level validation on patch request & signup post api
  - add api validation for each field
+
+ - install validator library
+ - explore validator library npm
+ - (imp)never in your trust req body
