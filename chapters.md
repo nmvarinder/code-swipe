@@ -104,5 +104,5 @@ CHAPTER: 21: DATA SANITIZATION AND SCHEMA VALIDATIONS
  - read the cookie inside your profile API and find the logged in user
 
  - userAuth middleware
- - add the userAuth middle ware in profile API and a new sendConnectionRequest API
+ - add the userAuth middleware in profile API and a new sendConnectionRequest API
  - set the expiry of JWT token and cookies to 5min or something

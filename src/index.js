@@ -5,7 +5,10 @@ const app = express();
 const {validateSignupData} = require('./utils/validation');
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
+const {userAuth} = require('./middleware/auth');
 const jwt = require('jsonwebtoken');
+const user = require('./models/user');
+
 
 app.use(express.json());
 app.use(cookieParser());
@@ -39,7 +42,6 @@ app.post('/signup', async (req, res) => {
     }
 })
 
-
 //login
 app.post('/login', async (req, res) => {
     try{
@@ -60,11 +62,10 @@ app.post('/login', async (req, res) => {
             throw new Error("Oops!...password incorrect")
         } else {
             // creating JWT token
-            const token = jwt.sign({_id: userData._id}, "DevTinder@98$");
-            console.log(token);
+            const token = jwt.sign({_id: userData._id}, "DevTinder@98$", { expiresIn: '1h' });
 
             //sending token to user and access to login
-            res.cookie("token", token);
+            res.cookie("token", token, {expires: new Date(Date.now() + 60 * 1000)});
             res.send("user login successfully!!!")
         }
     } catch(err) {
@@ -73,29 +74,24 @@ app.post('/login', async (req, res) => {
 
 })
 
-
-//profile : code can be refine here
-app.get('/profile', async (req, res) => {
+// request sending
+app.post('/sendConnectionRequest', userAuth, (req, res) => {
     try{
-        const {token} = req.cookies;
-        console.log(token);
-
-        const decodedToken = jwt.verify(token, "DevTinder@98$");
-        console.log(decodedToken);
-
-        const user = await User.findOne({_id: decodedToken._id});
-        console.log(user);
-
-        if(user){
-            res.send(user);
-        } else {
-            res.send("Invalid Credentials");
-        }
+        res.send("requested send by: " + req.user.firstName);
     } catch(err) {
         res.status(404).send("something wrong valid");
     }
 })
 
+//profile : code can be refine here
+app.get('/profile', userAuth, async (req, res) => {
+    try{
+        const user = req.user;
+        res.send(user);
+    } catch(err) {
+        res.status(404).send("something wrong valid");
+    }
+})
 
 
 connectDB().then(() => {
