@@ -106,3 +106,6 @@ CHAPTER: 21: DATA SANITIZATION AND SCHEMA VALIDATIONS
  - userAuth middleware
  - add the userAuth middleware in profile API and a new sendConnectionRequest API
  - set the expiry of JWT token and cookies to 5min or something
+
+ - create userSchema method to getJWT()
+ - create UserSchema method to comparePassword(passwordInputByUsers)

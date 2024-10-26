@@ -6,8 +6,7 @@ const {validateSignupData} = require('./utils/validation');
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
 const {userAuth} = require('./middleware/auth');
-const jwt = require('jsonwebtoken');
-const user = require('./models/user');
+
 
 
 app.use(express.json());
@@ -54,16 +53,15 @@ app.post('/login', async (req, res) => {
             throw new Error("user Doesn't exist");
         }
 
-        //comparing password with stored hash password
-        const isPasswordValid = await bcrypt.compare(password, userData.password);
-
+        //schema method: comparing password with stored hash password
+        const isPasswordValid = await userData.validatePassword(password);
         //data send: user login
         if(!isPasswordValid){
             throw new Error("Oops!...password incorrect")
         } else {
-            // creating JWT token
-            const token = jwt.sign({_id: userData._id}, "DevTinder@98$", { expiresIn: '1h' });
-
+            
+            const token = await userData.getJWT();
+            
             //sending token to user and access to login
             res.cookie("token", token, {expires: new Date(Date.now() + 60 * 1000)});
             res.send("user login successfully!!!")
