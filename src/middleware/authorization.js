@@ -10,7 +10,7 @@ const authAdmin = (req,res,next) => {
     }
 };
 
-const authUser = (req,res,next) => {
+const userAuth = (req,res,next) => {
     console.log("checking user authorization");
     const userToken = 'rdfgffdd';
     const authUser = userToken === 'xyz';

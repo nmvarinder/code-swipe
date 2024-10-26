@@ -86,10 +86,23 @@ CHAPTER: 21: DATA SANITIZATION AND SCHEMA VALIDATIONS
  - (imp)never in your trust req body
 
 
- CHAPTER 22: encrypting password
+ CHAPTER 22: ENCRYPTING PASSWORD
  - validate data in signup api  
  - install bcrypt package lib
  - create password using bcrypt.hash & save the user as encrypted password into the db
 
  - create login api
  - compare password and throw error if email or password is invalid
+
+
+ CHAPTER 23: AUTHENTICATION JWT COOKIES
+ - install cookie-parser 
+ - just send a dummy cookie to user
+ - create GET /profile API and check if you get the cookie back
+ - install jsonwebtoken
+ - in login API, after email and password, create a JWT token and send it to the user in cookie wrap
+ - read the cookie inside your profile API and find the logged in user
+
+ - userAuth middleware
+ - add the userAuth middle ware in profile API and a new sendConnectionRequest API
+ - set the expiry of JWT token and cookies to 5min or something

@@ -4,7 +4,11 @@ const User = require('./models/user');
 const app = express();
 const {validateSignupData} = require('./utils/validation');
 const bcrypt = require('bcrypt');
+const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
+
 app.use(express.json());
+app.use(cookieParser());
 
 /* POST API */
 //signup
@@ -43,116 +47,56 @@ app.post('/login', async (req, res) => {
 
         //checking user email id present in db or not
         const userData = await User.findOne({emailId});
-        
+
         if(!userData){
             throw new Error("user Doesn't exist");
         }
+
         //comparing password with stored hash password
-        const match = await bcrypt.compare(password, userData.password);
+        const isPasswordValid = await bcrypt.compare(password, userData.password);
 
         //data send: user login
-        if(!match){
+        if(!isPasswordValid){
             throw new Error("Oops!...password incorrect")
         } else {
+            // creating JWT token
+            const token = jwt.sign({_id: userData._id}, "DevTinder@98$");
+            console.log(token);
+
+            //sending token to user and access to login
+            res.cookie("token", token);
             res.send("user login successfully!!!")
         }
     } catch(err) {
         res.status(404).send(err.message);
     }
 
-
 })
 
 
-
-
-
-
-
-
-
-/* GET API */
-// get single user
-app.get('/user', async (req, res) => {
-    console.log(req.body.emailId);
-    const userEmail = req.body.emailId;
-    const user = await User.findOne({emailId: userEmail});
+//profile : code can be refine here
+app.get('/profile', async (req, res) => {
     try{
+        const {token} = req.cookies;
+        console.log(token);
+
+        const decodedToken = jwt.verify(token, "DevTinder@98$");
+        console.log(decodedToken);
+
+        const user = await User.findOne({_id: decodedToken._id});
+        console.log(user);
+
         if(user){
             res.send(user);
         } else {
-            res.send("user not found");
+            res.send("Invalid Credentials");
         }
     } catch(err) {
-        res.status(404).send("something went wrong");
-    }
-})
-// get all the user for feed
-app.get('/feed', async (req, res) => {
-    const user = await User.find({});
-    try{
-        if(user){
-            res.send(user);
-        } else {
-            res.send("user not found");
-        }
-    } catch(err) {
-        res.status(404).send("something went wrong!");
-    }
-})
-
-/* DELETE API */
-app.delete('/user', async (req, res) => {
-    const userId = req.body.userId;
-    try{
-        const user = await User.findByIdAndDelete({_id: userId});
-        res.send("user deleted successfully")
-    } catch(err) {
-        res.status(404).send("something went wrong!");
+        res.status(404).send("something wrong valid");
     }
 })
 
 
-/* UPDATE API */
-// using patch
-app.patch('/user/:userId', async (req, res) => {
-    const userId = req.params?.userId;
-    const data = req.body;
-    console.log(userId);
-
-    try{
-        const ALLOWED_UPDATE = ["photoURL", "gender", "experience", "password", "about", "skills"];
-
-        const isUpdateAllowed = Object.keys(data).every((k) => {
-            ALLOWED_UPDATE.includes(k);
-        })
-    
-        if(!isUpdateAllowed){
-            
-        }
-
-        if(data?.skills.length > 4){
-            throw new Error("skiils not exceeded by 4");
-        }
-
-        await User.findByIdAndUpdate({_id: userId}, data, {runValidators:true});
-        res.send("user updated successfully");
-    } catch(err) {
-        res.status(404).send("something went wrong!" + err);
-    }
-})
-// using put
-app.put('/user', async (req, res) => {
-    const userId = req.body.userId;
-    const data = req.body;
-
-    try{
-        await User.findByIdAndUpdate({_id: userId}, data);
-        res.send("user updated successfully");
-    } catch(err) {
-        res.status(404).send("something went wrong!");
-    }
-})
 
 connectDB().then(() => {
     console.log("Database connection established.")
