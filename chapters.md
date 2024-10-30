@@ -113,3 +113,9 @@ CHAPTER: 21: DATA SANITIZATION AND SCHEMA VALIDATIONS
 CHAPTER 24: DIVING INTO THE API AND EXPRESS ROUTER()
  - explore tinder APIs
  - create a list of All API that will implement
+
+ - read documentation for express.Router()
+ - group multiple routes under respective routers
+ - create routes dir for managing auth, profile, request routers
+ - create authRouter, profileRouter, requestRouter
+ - import this Routers into index.js
