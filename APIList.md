@@ -8,7 +8,7 @@
 ## profileRouter
 - GET /profile/view
 - PATCH /profile/edit
-- PATCH /profile/name
+- PATCH /profile/editOnce -> combined: firstName, lastName & gender
 - PATCH /profile/password
 
 ## connectionRequestRouter

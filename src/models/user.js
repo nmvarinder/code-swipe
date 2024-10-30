@@ -25,9 +25,26 @@ const userSchema = new mongoose.Schema({
             }
         },
     },
+    photoURL: {
+        type: String,
+        default: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+        validate(value){
+            if(!validator.isURL(value)){
+                throw new Error("incorrect profile url: " + value)
+            }
+        }
+    },   
+    skills: {
+        type: [String],
+
+    },
     experience: {
         type: Number,
         min: 0,
+    },
+    about: {
+        type: String,
+        default: "Let'us know about yourself.",
     },
     emailId: {
         type: String, 
@@ -52,23 +69,10 @@ const userSchema = new mongoose.Schema({
                 throw new Error("Not a strong Password: " + value)
             }
         }
-    }, 
-    photoURL: {
-        type: String,
-        default: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
-        validate(value){
-            if(!validator.isURL(value)){
-                throw new Error("incorrect profile url: " + value)
-            }
-        }
     },
-    about: {
-        type: String,
-        default: "Let'us know about yourself.",
-    }, 
-    skills: {
-        type: [String],
-
+    isEditOnceAllowed: {
+        type: Boolean,
+        default: true,
     }
 }, { timestamps: true});
 

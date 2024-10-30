@@ -119,3 +119,8 @@ CHAPTER 24: DIVING INTO THE API AND EXPRESS ROUTER()
  - create routes dir for managing auth, profile, request routers
  - create authRouter, profileRouter, requestRouter
  - import this Routers into index.js
+
+ - create POST / logout API
+ - create PATCH /profile/edit
+ - create PATCH /profile/password -> forgot password
+ 
