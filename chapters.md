@@ -109,3 +109,7 @@ CHAPTER: 21: DATA SANITIZATION AND SCHEMA VALIDATIONS
 
  - create userSchema method to getJWT()
  - create UserSchema method to comparePassword(passwordInputByUsers)
+
+CHAPTER 24: DIVING INTO THE API AND EXPRESS ROUTER()
+ - explore tinder APIs
+ - create a list of All API that will implement
