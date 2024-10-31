@@ -122,5 +122,6 @@ CHAPTER 24: DIVING INTO THE API AND EXPRESS ROUTER()
 
  - create POST / logout API
  - create PATCH /profile/edit
+ - create PATCH /profile/editOnce -> combined of (firstName, lastName & gender)
  - create PATCH /profile/password -> forgot password
- 
+

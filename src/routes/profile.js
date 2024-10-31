@@ -1,6 +1,7 @@
 const express = require('express');
 const {userAuth} = require('../middleware/auth');
-const {validateEditField, validateFieldOnce} = require('../utils/validation');
+const {validateEditField, validateFieldOnce, validateNewPassword} = require('../utils/validation');
+const bcrypt = require('bcrypt');
 
 const profileRouter = express.Router();
 
@@ -72,5 +73,29 @@ profileRouter.patch('/profile/editOnce', userAuth, async (req, res) => {
     }    
 }) 
 
+
+// profile: edit - password
+profileRouter.patch('/profile/password', userAuth, async (req, res) => {
+    try{
+        if(!validateNewPassword(req)){
+            throw new Error("password error: try again");
+        }
+        const newPassword = req.body.newPassword;
+        const newPasswordHash = await bcrypt.hash(newPassword, 10);
+
+        const loggedInUser = req.user;
+        loggedInUser.password = newPasswordHash;
+
+        await loggedInUser.save();
+        res.json({
+            message: `${loggedInUser.firstName}, your password change successfully`,
+            data: loggedInUser,
+        })
+
+    } catch(err){
+        res.status(400).send(err.message);
+    }
+    
+})
 
 module.exports = profileRouter;

@@ -28,9 +28,25 @@ const validateFieldOnce = (req) => {
     return isAllowedEditFieldOnce;
 }
 
+const validateNewPassword = async (req) => {
+    const {password, newPassword} = req.body;
+    const user = req.user;
+    
+    const isPasswordValid = await user.validatePassword(password);
+
+    if(!isPasswordValid){
+        throw new Error("Oops!..password incorrect");
+    } else if(!validator.isStrongPassword(newPassword)){
+        throw new Error("password is not strong");
+    }
+
+    return true;
+}
+
 
 module.exports = {
     validateSignupData,
     validateEditField,
     validateFieldOnce,
+    validateNewPassword,
 }
