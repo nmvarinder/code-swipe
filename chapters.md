@@ -125,3 +125,15 @@ CHAPTER 24: DIVING INTO THE API AND EXPRESS ROUTER()
  - create PATCH /profile/editOnce -> combined of (firstName, lastName & gender)
  - create PATCH /profile/password -> forgot password
 
+
+CHAPTER-25 LOGICAL DB QUERY AND COMPOUND INDEXES
+ - create connection Request schema
+ - send connection request api
+ - proper validation of data
+ - think about all corner cases
+ - $or query, $and query in mongoose
+ - schema.pre("save" ) method
+ - read more about indexes in mongoDB
+ - why do we need index in DB?
+ - what is the advantage and disadvantage of creating?
+ - read about compound indexes
