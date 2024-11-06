@@ -137,3 +137,7 @@ CHAPTER-25 LOGICAL DB QUERY AND COMPOUND INDEXES
  - why do we need index in DB?
  - what is the advantage and disadvantage of creating?
  - read about compound indexes
+
+
+
+ testing git ignore
